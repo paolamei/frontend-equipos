@@ -1,0 +1,138 @@
+<c-row ngPreserveWhitespaces>
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header>
+          <strong>Formulario de Equipos</strong>
+        </c-card-header>
+        <c-card-body>
+            <form cForm>
+              <div class="mb-3">
+                <label cLabel for="nombre">Equipo</label>
+                <input cFormControl
+                       id="EQUIPO"
+                       name="EQUIPO"
+                       placeholder="ingrese nombre"
+                       [(ngModel)] = "equipoModelo.EQUIPO"
+                       type="text"
+                />
+              </div>
+             <!--   <div class="mb-3">
+                <label cLabel for="estadoini">Estado Inicial</label>
+                <select aria-label="Seleccione Estado inicial" cSelect>
+                  <option value="1">NUEVO MA</option>
+                  <option value="2">USADO</option>
+                  <option value="3">REPUESTO</option>
+                </select>
+              </div> -->
+              <div class="mb-3">
+                <label cLabel for="nombre">Marca</label>
+                <input cFormControl
+                       id="MARCA"
+                       name="MARCA"
+                       placeholder="ingrese marca"
+                       [(ngModel)] = "equipoModelo.MARCA"
+                       type="text"
+                />
+              </div>
+              <div class="mb-3">
+                <label cLabel for="modelo">Modelo</label>
+                <input cFormControl
+                       id="MODELO"
+                       name="MODELO"
+                       placeholder="ingrese modelo"
+                       [(ngModel)] = "equipoModelo.MODELO"
+                       type="text"
+                />
+              </div>
+              <div class="mb-3">
+                <label cLabel for="imeiserie">IMEI / SERIE</label>
+                <input cFormControl
+                       id="IMEI_SERIE"
+                       name="IMEI_SERIE"
+                       placeholder="ingrese IMEI o SERIE"
+                       [(ngModel)] = "equipoModelo.IMEI_SERIE"
+                       type="text"
+                />
+              </div>
+             <!-- <div class="mb-3">
+                <label cLabel for="activo">Activo fijo?</label>
+                <select aria-label="Seleccione si es activo fijo de la empresa" cSelect>
+                  <option></option>
+                  <option value="1">SI</option>
+                  <option value="2">NO</option>
+                 
+                </select>
+              </div>
+              -->
+              <div class="mb-3">
+                <label cLabel for="linea">Linea</label>
+                <input cFormControl
+                       id="LINEA"
+                       name="LINEA"
+                       placeholder="ingrese linea"
+                       [(ngModel)] = "equipoModelo.LINEA"
+                       type="number"
+                />
+              </div>
+              <div class="mb-3">
+                <label cLabel for="gmail">Gmail</label>
+                <input cFormControl
+                       id="GMAIL"
+                       name="GMAIL"
+                       placeholder="name@example.com"
+                       [(ngModel)] = "equipoModelo.GMAIL"
+                       type="email"
+                />
+              </div>
+              <!--
+              <div class="mb-3">
+                <label cLabel for="imeiserie">Fecha de registro</label>
+                <input cFormControl
+                       id="imeiserie"
+                       placeholder="ingrese Fecha de resgistro"
+                       [(ngModel)] = "equipoModelo.FECHA_REG"
+                       type="date"
+                />
+              </div>
+              -->
+              <div class="mb-3">
+                <label cLabel for="usuario">Usuario</label>
+                <input cFormControl
+                       id="USUARIO"
+                       type="text"
+                       name="USUARIO"
+                       [(ngModel)] = "equipoModelo.USUARIO"
+                />
+              </div>
+              <button (click)="guardarEquipo()" cButton class="me-1" color="primary" type="submit">
+                Guardar
+              </button>
+            </form>
+        </c-card-body>
+      </c-card>
+    </c-col>
+    <c-col xs="12">
+      <table cTable>
+        <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Usuario</th>
+          <th scope="col">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for ( equipo of listaEquipos; track equipo; ){
+            <tr>
+              <th scope="row">1</th>
+              <td>{{equipo.EQUIPO}}</td>
+              <td>{{equipo.MARCA}}</td>
+              <td>
+                <button cButton color="warning" variant="outline" (click)="verEquipo(equipo)">Editar</button>
+                <button (click)="eliminarEquipo(equipo)" cButton color="danger" variant="outline">Eliminar</button></td>
+            </tr>
+      }
+        </tbody>
+      </table>
+    </c-col>
+  </c-row>

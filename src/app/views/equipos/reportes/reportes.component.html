@@ -1,0 +1,120 @@
+<c-row ngPreserveWhitespaces>
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header>
+          <strong>Buscar Equipos Asignados a Empleado</strong>
+        </c-card-header>
+        <c-card-body>
+           
+           <div>
+           
+            <div>
+              
+                <div class="mb-3">
+                  <label cLabel for="nombre">Empleado</label>
+                  <input cFormControl
+                         id="empleado"
+                         name="empleado"
+                         placeholder="Nombre del Empleado"
+                         [(ngModel)]="nombreEmpleado"
+                         type="text"
+                  />
+                </div>
+              <button (click)="obtenerEquiposAsignados()" cButton class="me-1" color="primary" type="submit">
+                Buscar
+              </button>
+            </div>
+        
+            <table cTable>
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Empleado</th>
+                <th scope="col">Equipo</th>
+                <th scope="col">Marca</th>
+                <th scope="col">Fecha Asignación</th>
+              </tr>
+              </thead>
+              <tbody>
+               
+                  <tr *ngFor="let equipo of equipos; let i = index">
+                    <th>{{ i + 1 }}</th>
+                    <td>{{ equipo.EMPLEADO }}</td>
+                    <td>{{ equipo.EQUIPO }}</td>
+                    <td>{{ equipo.MARCA }}</td>
+                    <td>{{ equipo.FECHA_ASIG }}</td>
+                    
+                  </tr>
+              </tbody>
+            </table>
+          
+            <div *ngIf="!equipos.length && nombreEmpleado">
+              <p>No se encontraron equipos asignados para el empleado "{{ nombreEmpleado }}".</p>
+            </div>
+          </div>
+        </c-card-body>
+      </c-card>
+    </c-col>
+    <c-col xs="12">
+      <c-card class="mb-4">
+        <c-card-header>
+          <strong>Buscar Equipos Asignados por rango de fechas</strong>
+        </c-card-header>
+        <c-card-body>
+           <div>
+            <div>
+                <div class="mb-3">
+                  <label cLabel for="nombre">Fecha Inicio:</label>
+                  <input cFormControl
+                         id="fechaInicio"
+                         name="fechaInicio"
+                         [(ngModel)]="fechaInicio"
+                         type="date"
+                  />
+                </div>
+                <div class="mb-3">
+                  <label cLabel for="nombre">Fecha Fin:</label>
+                  <input cFormControl
+                         id="fechaFin"
+                         name="fechaFin"
+                         [(ngModel)]="fechaFin"
+                         type="date"
+                  />
+                </div>
+
+              <button (click)="obtenerEquiposAsignadosFecha()" cButton class="me-1" color="info">
+                Buscar
+              </button>
+          
+            </div>
+        
+            <table cTable>
+              <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Empleado</th>
+                <th scope="col">Fecha Asignación</th>
+                <th scope="col">Obs Asignacion</th>
+                <th scope="col">Equipo</th>
+              </tr>
+              </thead>
+              <tbody>
+               
+                  <tr *ngFor="let equiposf of equiposfec; let i = index">
+                    <th>{{ i + 1 }}</th>
+                    <td>{{ equiposf.EMPLEADO }}</td>
+                    <td>{{ equiposf.FECHA_ASIGN }}</td>
+                    <td>{{ equiposf.OBS_ASIG}}</td>
+                    <td>{{ equiposf.equipo_info.EQUIPO }} {{ equiposf.equipo_info.MARCA}}</td>
+                  </tr>
+              </tbody>
+            </table>
+          
+            <div *ngIf="!equiposfec.length && nombreEmpleado">
+              <p>No se encontraron equipos asignados para el empleado "{{ nombreEmpleado }}".</p>
+            </div>
+          </div>
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>
